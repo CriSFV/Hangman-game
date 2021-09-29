@@ -10,13 +10,13 @@ function App() {
   const handlerLetter = (ev) => {
     const inputValue = ev.target.value;
     let regex = RegExp('^[a-zA-Z]$');
-    console.log(regex);
+    console.log(inputValue);
 
     //console.log(inputValue.match(regex))
-    if (regex === inputValue) {
+    if (inputValue.match(regex)) {
       setLastLetter(inputValue); // no está entrando por aquí cuando pones una letra en el input
     } else {
-      setLastLetter('');
+      setLastLetter(''); //si es número no pinta nada porque aquí le estamos diciendo que sea string vacío
     }
 
     // const inputValue = ev.target.value;
