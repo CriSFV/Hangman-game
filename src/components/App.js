@@ -51,6 +51,18 @@ function App() {
       }
     });
   };
+  const renderErrorLetters = () => {
+    const errorLetter = userLetter.filter(
+      (letter) => word.includes(letter) === false
+    );
+    return errorLetter.map((eachletter, index) => {
+      return (
+        <li className='letter' key={index}>
+          {eachletter}
+        </li>
+      );
+    });
+  };
 
   return (
     <div className='page'>
@@ -68,11 +80,12 @@ function App() {
           <div className='feedback'>
             <h2 className='title'>Letras falladas:</h2>
             <ul className='letters'>
-              <li className='letter'>f</li>
+              {renderErrorLetters()}
+              {/* <li className='letter'>f</li>
               <li className='letter'>q</li>
               <li className='letter'>h</li>
               <li className='letter'>p</li>
-              <li className='letter'>x</li>
+              <li className='letter'>x</li> */}
             </ul>
           </div>
           <form className='form'>
