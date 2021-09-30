@@ -1,11 +1,17 @@
 import '../styles/App.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import callToApi from '../services/api';
 
 function App() {
-  const [numberOfErrors, setNumberOfErrors] = useState(0);
   const [userLetter, setUserLetter] = useState([]); //donde se almacena las letras de la usuaria (solo las que están bien)
   const [lastLetter, setLastLetter] = useState(''); //string para almacenar al última letra introducida por la jugadora
-  const [word, setWord] = useState('katakroker'); //donde) se va a almacenar la palabra a adivinar
+  const [word, setWord] = useState(''); //donde) se va a almacenar la palabra a adivinar
+
+  useEffect(() => {
+    callToApi().then((response) => {
+      setWord(response);
+    });
+  }, []);
 
   const handlerLetter = (ev) => {
     const inputValue = ev.target.value;
@@ -18,7 +24,6 @@ function App() {
     } else {
       setLastLetter(''); //si es número no pinta nada porque aquí le estamos diciendo que sea string vacío
     }
-
     // const inputValue = ev.target.value;
     // console.log(inputValue);
     //setLastLetter(inputValue);
@@ -26,11 +31,11 @@ function App() {
     setUserLetter([...userLetter, inputValue]);
   };
 
-  const handleIncreaseErrors = (ev) => {
-    ev.preventDefault();
-    let counter = numberOfErrors + 1;
-    setNumberOfErrors(counter);
-  };
+  // const handleIncreaseErrors = (ev) => {
+  //   ev.preventDefault();
+  //   let counter = numberOfErrors + 1;
+  //   setNumberOfErrors(counter);
+  // };
   const renderSolutionLetter = () => {
     const wordLetter = word.split(''); //wordLetter es el array donde se guarda la palabra en letras
 
@@ -50,6 +55,12 @@ function App() {
         return <li className='letter' key={index}></li>;
       }
     });
+  };
+  const numberError = () => {
+    const errorLetter = userLetter.filter(
+      (letter) => word.includes(letter) === false
+    );
+    return errorLetter.length; // filtramos para saber cuantos numeros de errores llevamos  y actualizarlo en la seccion del muñequito
   };
   const renderErrorLetters = () => {
     const errorLetter = userLetter.filter(
@@ -103,9 +114,8 @@ function App() {
               onChange={handlerLetter}
             />
           </form>
-          <button onClick={handleIncreaseErrors}>Incrementar</button>
         </section>
-        <section className={`dummy error-${numberOfErrors}`}>
+        <section className={`dummy error-${numberError()}`}>
           <span className='error-13 eye'></span>
           <span className='error-12 eye'></span>
           <span className='error-11 line'></span>
