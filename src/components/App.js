@@ -47,6 +47,13 @@ function App() {
     });
   };
 
+  const numberError = () => {
+    const errorLetter = userLetter.filter(
+      (letter) => word.includes(letter) === false
+    );
+    return errorLetter.length;
+  };
+
   const renderErrorLetters = () => {
     const errorLetter = userLetter.filter(
       (letter) => word.includes(letter) === false
@@ -92,7 +99,7 @@ function App() {
             />
           </form>
         </section>
-        <HangedDoll userLetter={userLetter} word={word} />
+        <HangedDoll numberError={numberError()} />
       </main>
     </div>
   );

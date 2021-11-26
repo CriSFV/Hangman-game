@@ -1,13 +1,6 @@
 const HangedDoll = (props) => {
-  console.log(props);
-  const numberError = () => {
-    const errorLetter = props.userLetter.filter(
-      (letter) => props.word.includes(letter) === false
-    );
-    return errorLetter.length;
-  };
   return (
-    <section className={`dummy error-${numberError()}`}>
+    <section className={`dummy error-${props.numberError}`}>
       <span className='error-13 eye'></span>
       <span className='error-12 eye'></span>
       <span className='error-11 line'></span>
