@@ -1,8 +1,26 @@
-@import 'components/app';
-@import 'components/dummy';
-@import 'components/footer';
-@import 'components/form';
+// COMMON STYLES
 
-@import 'components/instructions';
+.title {
+  display: block;
+  font-size: 1.25rem;
+  line-height: 1;
+  text-align: center;
+}
 
-@import 'components/loading';
+// PAGE
+
+.page {
+  padding: 2rem;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('../images/blackboard.jpeg');
+  background-size: cover;
+  background-position: center center;
+}
+
+// MAIN
+
+.main {
+  display: flex;
+  justify-content: center;
+}

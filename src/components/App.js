@@ -1,9 +1,11 @@
 import '../styles/App.scss';
+import '../styles/Form.scss';
 import { useState, useEffect } from 'react';
 import callToApi from '../services/api';
 import Header from './Header';
-import HangedDoll from './HangedDoll';
+import Dummy from './Dummy';
 import SolutionLetters from './SoluctionLetters';
+import ErrorLetters from './ErrorLetters';
 
 function App() {
   const [userLetter, setUserLetter] = useState([]); //donde se almacena las letras de la jugadora (todas)
@@ -34,19 +36,6 @@ function App() {
     return errorLetter.length;
   };
 
-  const renderErrorLetters = () => {
-    const errorLetter = userLetter.filter(
-      (letter) => word.includes(letter) === false
-    );
-    return errorLetter.map((eachletter, index) => {
-      return (
-        <li className='letter' key={index}>
-          {eachletter}
-        </li>
-      );
-    });
-  };
-
   return (
     <div className='page'>
       <Header />
@@ -54,11 +43,8 @@ function App() {
       <main className='main'>
         <section>
           <SolutionLetters word={word} userLetter={userLetter} />
+          <ErrorLetters word={word} userLetter={userLetter} />
 
-          <div className='feedback'>
-            <h2 className='title'>Letras falladas:</h2>
-            <ul className='letters'>{renderErrorLetters()}</ul>
-          </div>
           <form className='form'>
             <label className='title' htmlFor='last-letter'>
               Escribe una letra:
@@ -75,7 +61,7 @@ function App() {
             />
           </form>
         </section>
-        <HangedDoll numberError={numberError()} />
+        <Dummy numberError={numberError()} />
       </main>
     </div>
   );

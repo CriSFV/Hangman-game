@@ -1,4 +1,6 @@
-const HangedDoll = (props) => {
+import '../styles/Dummy.scss';
+
+const Dummy = (props) => {
   return (
     <section className={`dummy error-${props.numberError}`}>
       <span className='error-13 eye'></span>
@@ -17,4 +19,4 @@ const HangedDoll = (props) => {
     </section>
   );
 };
-export default HangedDoll;
+export default Dummy;

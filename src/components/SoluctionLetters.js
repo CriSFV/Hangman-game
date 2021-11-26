@@ -1,4 +1,4 @@
-import '../styles/components/Letters.scss';
+import '../styles/Letters.scss';
 const SolutionLetters = (props) => {
   const renderSolutionLetter = () => {
     const wordLetter = props.word.split(''); //wordLetter es el array donde se guarda la palabra en letras (convertimos la palabra en letras con el metodo split)
