@@ -1,10 +1,12 @@
 import '../styles/App.scss';
 import { useState, useEffect } from 'react';
 import callToApi from '../services/api';
+import Header from './Header';
+//import HangedDoll from './HangedDoll';
 
 function App() {
-  const [userLetter, setUserLetter] = useState([]); //donde se almacena las letras de la usuaria (solo las que están bien)
-  const [lastLetter, setLastLetter] = useState(''); //string para almacenar al última letra introducida por la jugadora
+  const [userLetter, setUserLetter] = useState([]); //donde se almacena las letras de la jugadora (todas)
+  const [lastLetter, setLastLetter] = useState(''); //string para almacenar al última letra introducida por la jugadora (si no es permitida no se incluye, por eso no lo pinta aunque marques tecla)
   const [word, setWord] = useState(''); //donde) se va a almacenar la palabra a adivinar
 
   useEffect(() => {
@@ -15,20 +17,13 @@ function App() {
 
   const handlerLetter = (ev) => {
     const inputValue = ev.target.value;
-    let regex = RegExp('^[a-zA-Z]$');
+    let regex = new RegExp('^[a-zA-Z]$'); // letras permitidas, el resto no lo están
     console.log(inputValue);
-
-    //console.log(inputValue.match(regex))
     if (inputValue.match(regex)) {
-      setLastLetter(inputValue); // no está entrando por aquí cuando pones una letra en el input
+      setUserLetter([...userLetter, inputValue]);
     } else {
       setLastLetter(''); //si es número no pinta nada porque aquí le estamos diciendo que sea string vacío
     }
-    // const inputValue = ev.target.value;
-    // console.log(inputValue);
-    //setLastLetter(inputValue);
-
-    setUserLetter([...userLetter, inputValue]);
   };
 
   // const handleIncreaseErrors = (ev) => {
@@ -77,9 +72,8 @@ function App() {
 
   return (
     <div className='page'>
-      <header>
-        <h1 className='header__title'>Juego del ahorcado</h1>
-      </header>
+      <Header />
+
       <main className='main'>
         <section>
           <div className='solution'>
@@ -90,14 +84,7 @@ function App() {
 
           <div className='feedback'>
             <h2 className='title'>Letras falladas:</h2>
-            <ul className='letters'>
-              {renderErrorLetters()}
-              {/* <li className='letter'>f</li>
-              <li className='letter'>q</li>
-              <li className='letter'>h</li>
-              <li className='letter'>p</li>
-              <li className='letter'>x</li> */}
-            </ul>
+            <ul className='letters'>{renderErrorLetters()}</ul>
           </div>
           <form className='form'>
             <label className='title' htmlFor='last-letter'>
@@ -115,6 +102,7 @@ function App() {
             />
           </form>
         </section>
+        {/* <HangedDoll numberError={numberError()} /> */}
         <section className={`dummy error-${numberError()}`}>
           <span className='error-13 eye'></span>
           <span className='error-12 eye'></span>

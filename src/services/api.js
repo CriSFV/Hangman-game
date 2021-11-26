@@ -5,7 +5,6 @@ const callToApi = () => {
     .then((response) => {
       // Cuando responde el API podemos limpiar los datos aquí
       const result = response.body.Word;
-      console.log(result);
       return result;
     });
 };
