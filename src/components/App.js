@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import callToApi from '../services/api';
 import Header from './Header';
 import HangedDoll from './HangedDoll';
+import SolutionLetters from './SoluctionLetters';
 
 function App() {
   const [userLetter, setUserLetter] = useState([]); //donde se almacena las letras de la jugadora (todas)
@@ -24,27 +25,6 @@ function App() {
     } else {
       setLastLetter(''); //si es número no pinta nada porque aquí le estamos diciendo que sea string vacío y tampoco se guarda en el estado
     }
-  };
-
-  const renderSolutionLetter = () => {
-    const wordLetter = word.split(''); //wordLetter es el array donde se guarda la palabra en letras (convertimos la palabra en letras con el metodo split)
-    // cogemos el array de la palabra random y la mapeamos. cada una de la sletras la comparamos con las letras del usuario y buscamos la posición
-    return wordLetter.map((eachletter, index) => {
-      //Buscamos si coincide la letra:
-      const letterFound = userLetter.findIndex(
-        (eachletterUser) => eachletter === eachletterUser
-      );
-      // si coincide (porque la posición es diferente a -1, pintas la letra)
-      if (letterFound !== -1) {
-        return (
-          <li className='letter' key={index}>
-            {eachletter}
-          </li>
-        );
-      } else {
-        return <li className='letter' key={index}></li>;
-      }
-    });
   };
 
   const numberError = () => {
@@ -73,11 +53,7 @@ function App() {
 
       <main className='main'>
         <section>
-          <div className='solution'>
-            <h2 className='title'>Solución:</h2>
-
-            <ul className='letters'>{renderSolutionLetter()}</ul>
-          </div>
+          <SolutionLetters word={word} userLetter={userLetter} />
 
           <div className='feedback'>
             <h2 className='title'>Letras falladas:</h2>
