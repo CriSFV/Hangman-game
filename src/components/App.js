@@ -2,7 +2,7 @@ import '../styles/App.scss';
 import { useState, useEffect } from 'react';
 import callToApi from '../services/api';
 import Header from './Header';
-//import HangedDoll from './HangedDoll';
+import HangedDoll from './HangedDoll';
 
 function App() {
   const [userLetter, setUserLetter] = useState([]); //donde se almacena las letras de la jugadora (todas)
@@ -22,18 +22,13 @@ function App() {
     if (inputValue.match(regex)) {
       setUserLetter([...userLetter, inputValue]);
     } else {
-      setLastLetter(''); //si es número no pinta nada porque aquí le estamos diciendo que sea string vacío
+      setLastLetter(''); //si es número no pinta nada porque aquí le estamos diciendo que sea string vacío y tampoco se guarda en el estado
     }
   };
 
-  // const handleIncreaseErrors = (ev) => {
-  //   ev.preventDefault();
-  //   let counter = numberOfErrors + 1;
-  //   setNumberOfErrors(counter);
-  // };
   const renderSolutionLetter = () => {
-    const wordLetter = word.split(''); //wordLetter es el array donde se guarda la palabra en letras
-
+    const wordLetter = word.split(''); //wordLetter es el array donde se guarda la palabra en letras (convertimos la palabra en letras con el metodo split)
+    // cogemos el array de la palabra random y la mapeamos. cada una de la sletras la comparamos con las letras del usuario y buscamos la posición
     return wordLetter.map((eachletter, index) => {
       //Buscamos si coincide la letra:
       const letterFound = userLetter.findIndex(
@@ -51,12 +46,7 @@ function App() {
       }
     });
   };
-  const numberError = () => {
-    const errorLetter = userLetter.filter(
-      (letter) => word.includes(letter) === false
-    );
-    return errorLetter.length; // filtramos para saber cuantos numeros de errores llevamos  y actualizarlo en la seccion del muñequito
-  };
+
   const renderErrorLetters = () => {
     const errorLetter = userLetter.filter(
       (letter) => word.includes(letter) === false
@@ -102,22 +92,7 @@ function App() {
             />
           </form>
         </section>
-        {/* <HangedDoll numberError={numberError()} /> */}
-        <section className={`dummy error-${numberError()}`}>
-          <span className='error-13 eye'></span>
-          <span className='error-12 eye'></span>
-          <span className='error-11 line'></span>
-          <span className='error-10 line'></span>
-          <span className='error-9 line'></span>
-          <span className='error-8 line'></span>
-          <span className='error-7 line'></span>
-          <span className='error-6 head'></span>
-          <span className='error-5 line'></span>
-          <span className='error-4 line'></span>
-          <span className='error-3 line'></span>
-          <span className='error-2 line'></span>
-          <span className='error-1 line'></span>
-        </section>
+        <HangedDoll userLetter={userLetter} word={word} />
       </main>
     </div>
   );
