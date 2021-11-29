@@ -7,6 +7,7 @@ import Dummy from './Dummy';
 import SolutionLetters from './SoluctionLetters';
 import ErrorLetters from './ErrorLetters';
 import Form from './Form';
+import Footer from './Footer';
 
 function App() {
   const [userLetter, setUserLetter] = useState([]); //donde se almacena las letras de la jugadora (todas)
@@ -49,6 +50,7 @@ function App() {
         </section>
         <Dummy numberError={numberError()} />
       </main>
+      <Footer />
     </div>
   );
 }
