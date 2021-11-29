@@ -1,26 +1,29 @@
 import '../styles/Footer.scss';
+import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer className='footer'>
       <nav>
         <ul>
           <li className='footer__menu-item'>
-            <a className='footer__menu-link' href='#/'>
+            <Link className='footer__menu-link active' to='/'>
               A jugar
-            </a>
+            </Link>
           </li>
+
           <li className='footer__menu-item'>
-            <a className='footer__menu-link active' href='#/instructions'>
+            <Link className='footer__menu-link active' to='/instructions'>
               ¿Cómo se juega?
-            </a>
+            </Link>
           </li>
           <li className='footer__menu-item'>
-            <a className='footer__menu-link' href='#/options'>
+            <Link className='footer__menu-link active' to='/options'>
               Más opciones
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
+
       <small className='footer__copy'>© Adalab</small>
     </footer>
   );
