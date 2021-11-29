@@ -34,7 +34,7 @@ $dummyTransitionTime: 1s;
     color: $dummyDisabledColor;
     transition: color $dummyTransitionTime ease;
     &::before {
-      content: "×";
+      content: '×';
     }
   }
 
@@ -72,14 +72,14 @@ $dummyTransitionTime: 1s;
   }
 
   .error-6 {
-    top: 7.5rem;
-    left: 8.75rem;
+    top: 7.6rem;
+    left: 8.25rem;
   }
 
   .error-7 {
     transform: rotate(90deg);
     width: 6rem;
-    top: 13.5rem;
+    top: 14.75rem;
     left: 7.5rem;
   }
 
@@ -100,25 +100,25 @@ $dummyTransitionTime: 1s;
   .error-10 {
     transform: rotate(60deg);
     width: 4rem;
-    top: 18rem;
+    top: 19rem;
     left: 9.5rem;
   }
 
   .error-11 {
     transform: rotate(120deg);
     width: 4rem;
-    top: 18rem;
+    top: 19rem;
     left: 7.5rem;
   }
 
   .error-12 {
-    top: 7.5rem;
-    left: 9.5rem;
+    top: 8.5rem;
+    left: 9.3rem;
   }
 
   .error-13 {
-    top: 7.5rem;
-    left: 10.5rem;
+    top: 8.5rem;
+    left: 10.6rem;
   }
 
   // https://sass-lang.com/documentation/at-rules/control/for
