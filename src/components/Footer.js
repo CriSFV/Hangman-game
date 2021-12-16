@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className='footer'>
       <nav>
-        <ul>
+        <ul className='footer__menu'>
           <li className='footer__menu-item'>
             <Link className='footer__menu-link active' to='/'>
               A jugar
