@@ -3,7 +3,7 @@ const Footer = () => {
   return (
     <footer className='footer'>
       <nav>
-        <ul>
+        <ul className='footer__menu'>
           <li className='footer__menu-item'>
             <a className='footer__menu-link' href='#/'>
               A jugar

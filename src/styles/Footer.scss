@@ -1,20 +1,28 @@
 .footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding-top: 2rem;
 
   * {
     font-size: 0.75rem;
   }
+  &__menu {
+    display: flex;
+    flex-direction: column;
 
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
   &__menu-item {
     display: inline-block;
     list-style: none;
+    padding: 0.5rem;
   }
 
   &__menu-link {
     padding-right: 2rem;
-    color: black;
+    color: antiquewhite;
     font-size: 20px;
 
     &.active {
